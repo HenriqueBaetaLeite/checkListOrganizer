@@ -1,8 +1,11 @@
-const { getUsersService, getUserbyIdService } = require('../services/userService');
+const {
+  getUsersService,
+  getUserbyIdService,
+} = require("../services/userService");
 
 const getAllUsers = async (req, res) => {
   const users = await getUsersService();
-    return res.status(200).json(users);
+  return res.status(200).json(users);
 };
 
 const getUser = async (req, res) => {
@@ -12,6 +15,6 @@ const getUser = async (req, res) => {
 };
 
 module.exports = {
-    getAllUsers,
-    getUser,
+  getAllUsers,
+  getUser,
 };
