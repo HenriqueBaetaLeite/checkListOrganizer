@@ -1,0 +1,120 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Check List Organizer API",
+    "description": "Organize your tasks and activities with ease using our checklist application! With an intuitive interface, you can create customized lists for all your needs, whether for work, study, or daily tasks. Add items, mark them as completed, and set reminders to ensure you never forget anything. Stay productive and organized with our efficient and easy-to-use checklist application!",
+    "version": "0.1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3003",
+      "description": "Dev server"
+    }
+  ],
+  "components": {
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "example": "Alice"
+          },
+          "email": {
+            "type": "string",
+            "example": "  [email protected]"
+          },
+          "password": {
+            "type": "string",
+            "example": "123456"
+          }
+        },
+        "required": [
+          "name",
+          "email",
+          "password"
+        ]
+      }
+    }
+  },
+  "paths": {
+    "/api/users": {
+      "get": {
+        "summary": "Returns a list of users.",
+        "responses": {
+          "200": {
+            "description": "A JSON array of objects representing users.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "ref": "#/components/schemas/User"
+                  },
+                  "example": [
+                    {
+                      "id": 1,
+                      "name": "Alice",
+                      "email": "  [email protected]",
+                      "password": "123456"
+                    },
+                    {
+                      "id": 2,
+                      "name": "Bob",
+                      "email": "  [email protected]",
+                      "password": "123456"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users/{id}": {
+      "get": {
+        "summary": "Returns a user by ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the user to return.",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A user object.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "ref": "#/components/schemas/User",
+                  "example": {
+                    "id": 1,
+                    "name": "Alice",
+                    "email": "  [email protected]",
+                    "password": "123456"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found."
+          }
+        }
+      }
+    }
+  }
+}
