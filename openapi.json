@@ -12,6 +12,17 @@
     }
   ],
   "components": {
+    "responses": {
+      "NotFound": {
+        "description": "Resource not found."
+      },
+      "InternalServerError": {
+        "description": "Internal server error."
+      },
+      "UserNotFound": {
+        "description": "User not found."
+      }
+    },
     "schemas": {
       "User": {
         "type": "object",
@@ -54,26 +65,14 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "type": "object",
-                    "ref": "#/components/schemas/User"
-                  },
-                  "example": [
-                    {
-                      "id": 1,
-                      "name": "Alice",
-                      "email": "  [email protected]",
-                      "password": "123456"
-                    },
-                    {
-                      "id": 2,
-                      "name": "Bob",
-                      "email": "  [email protected]",
-                      "password": "123456"
-                    }
-                  ]
+                    "$ref": "#/components/schemas/User"
+                  }
                 }
               }
             }
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         }
       }
@@ -99,19 +98,16 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "ref": "#/components/schemas/User",
-                  "example": {
-                    "id": 1,
-                    "name": "Alice",
-                    "email": "  [email protected]",
-                    "password": "123456"
-                  }
+                  "$ref": "#/components/schemas/User"
                 }
               }
             }
           },
           "404": {
-            "description": "User not found."
+            "$ref": "#/components/responses/UserNotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         }
       }
