@@ -1,40 +1,36 @@
 const { User } = require("../database/models");
 
-const getUsersService = async () => {
-  const allUsers = await User.findAll();
-  return allUsers;
-};
+const getUsersService = async () => User.findAll();
 
-const getUserbyIdService = async (id) => {
-  const user = await User.findByPk(id);
-  return user;
-};
+const getUserbyIdService = async (id) => User.findByPk(id);
 
-const createUserService = async (user) => {
-  const newUser = await User.create(user);
-  return newUser;
-};
+const getUserByEmailService = async (email) =>
+  User.findOne({
+    where: {
+      email,
+    },
+  });
 
-const updateUserService = async (id, user) => {
-  const updatedUser = await User.update(user, {
+const createUserService = async (user) => User.create(user);
+
+const updateUserService = async (id, user) =>
+  User.update(user, {
     where: {
       id,
     },
   });
-  return updatedUser;
-};
 
-const deleteUserService = async (id) => {
-  await User.destroy({
+const deleteUserService = async (id) =>
+  User.destroy({
     where: {
       id,
     },
   });
-};
 
 module.exports = {
   getUsersService,
   getUserbyIdService,
+  getUserByEmailService,
   createUserService,
   updateUserService,
   deleteUserService,
