@@ -47,6 +47,22 @@
             }
           }
         }
+      },
+      "InvalidIdParameter": {
+        "description": "Invalid ID parameter.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Invalid ID parameter."
+                }
+              }
+            }
+          }
+        }
       }
     },
     "schemas": {
@@ -165,6 +181,9 @@
           },
           "500": {
             "$ref": "#/components/responses/InternalServerError"
+          }, 
+          "400": {
+            "$ref": "#/components/responses/InvalidIdParameter"
           }
         }
       },
@@ -204,7 +223,7 @@
             }
           },
           "400": {
-            "description": "Invalid request body."
+            "$ref": "#/components/responses/InvalidIdParameter"
           },
           "404": {
             "$ref": "#/components/responses/UserNotFound"
@@ -234,6 +253,9 @@
           },
           "404": {
             "$ref": "#/components/responses/UserNotFound"
+          },
+          "400": {
+            "$ref": "#/components/responses/InvalidIdParameter"
           },
           "500": {
             "$ref": "#/components/responses/InternalServerError"
