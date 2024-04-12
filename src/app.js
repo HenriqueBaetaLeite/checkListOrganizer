@@ -4,6 +4,8 @@ const swaggerDocument = require('../openapi.json');
 
 const userRouter = require("./routes/userRouter");
 
+const errorMiddleware = require('./controllers/middlewares/errorMiddleware');
+
 const app = express();
 app.use(express.json());
 
@@ -14,5 +16,7 @@ app.get("/health", (req, res) => {
 app.use("/api/users", userRouter);
 
 app.use("/api/docs", swaggerui.serve, swaggerui.setup(swaggerDocument));
+
+app.use(errorMiddleware);
 
 module.exports = app;
