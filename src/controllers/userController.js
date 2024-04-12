@@ -11,10 +11,14 @@ const getAllUsers = async (req, res) => {
   return res.status(200).json(users);
 };
 
-const getUser = async (req, res) => {
-  const { id } = req.params;
-  const user = await getUserbyIdService(id);
-  return res.status(200).json(user);
+const getUserById = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const serviceResponse = await getUserbyIdService(id);
+    return res.status(serviceResponse.statusCode).json(serviceResponse.payload);
+  } catch (error) {
+    return next(error);
+  }
 };
 
 const createUser = async (req, res) => {
@@ -38,7 +42,7 @@ const deleteUser = async (req, res) => {
 
 module.exports = {
   getAllUsers,
-  getUser,
+  getUserById,
   createUser,
   updateUser,
   deleteUser
