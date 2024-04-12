@@ -7,10 +7,7 @@ const getUsersService = async () => {
 
 const getUserbyIdService = async (id) => {
   const user = await User.findByPk(id);
-  if (!user) {
-    return { statusCode: 404, payload: { message: "User not found." } };
-  };
-  return { statusCode: 200, payload: user };
+  return user;
 };
 
 const createUserService = async (user) => {

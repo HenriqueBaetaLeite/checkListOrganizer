@@ -8,14 +8,18 @@ const {
   deleteUser,
 } = require("../controllers/userController.js");
 
-router.get("/", getAllUsers);
+const {
+  getUserByIdMiddleware,
+} = require("../controllers/middlewares/userMiddleware.js");
 
-router.get("/:id", getUserById);
+router.get("/", getAllUsers);
 
 router.post("/", createUser);
 
-router.put("/:id", updateUser);
+router.get("/:id", getUserByIdMiddleware, getUserById);
 
-router.delete("/:id", deleteUser);
+router.put("/:id", getUserByIdMiddleware, updateUser);
+
+router.delete("/:id", getUserByIdMiddleware, deleteUser);
 
 module.exports = router;

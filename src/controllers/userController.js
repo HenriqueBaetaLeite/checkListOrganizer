@@ -13,9 +13,8 @@ const getAllUsers = async (req, res) => {
 
 const getUserById = async (req, res, next) => {
   try {
-    const { id } = req.params;
-    const serviceResponse = await getUserbyIdService(id);
-    return res.status(serviceResponse.statusCode).json(serviceResponse.payload);
+    const { user } = req;
+    return res.status(200).json(user);
   } catch (error) {
     return next(error);
   }
