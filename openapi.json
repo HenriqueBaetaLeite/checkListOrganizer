@@ -17,10 +17,36 @@
         "description": "Resource not found."
       },
       "InternalServerError": {
-        "description": "Internal server error."
+        "description": "Internal server error.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Internal server error."
+                }
+              }
+            }
+          }
+        }
       },
       "UserNotFound": {
-        "description": "User not found."
+        "description": "User not found.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "User not found."
+                }
+              }
+            }
+          }
+        }
       }
     },
     "schemas": {
