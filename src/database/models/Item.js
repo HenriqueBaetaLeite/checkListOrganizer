@@ -26,6 +26,15 @@ const ItemModel = (sequelize, datatypes) => {
       timestamps: false,
     }
   );
+
+  Item.associate = (models) => {
+    Item.belongsToMany(models.CheckList, {
+      through: "itemsCheckLists",
+      foreignKey: "itemId",
+      as: "checkLists",
+    });
+  };
+
   return Item;
 };
 

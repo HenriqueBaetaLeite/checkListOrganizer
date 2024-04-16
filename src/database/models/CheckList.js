@@ -33,6 +33,12 @@ const checkListModel = (sequelize, DataTypes) => {
       foreignKey: "userId",
       as: "user",
     });
+
+    CheckList.hasMany(models.Item, {
+      through: "itemsCheckLists",
+      foreignKey: "checkListId",
+      as: "items",
+    });
   };
 
   return CheckList;
