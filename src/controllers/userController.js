@@ -1,6 +1,5 @@
 const {
   getUsersService,
-  getUserbyIdService,
   createUserService,
   updateUserService,
   deleteUserService,
@@ -11,9 +10,8 @@ const getAllUsers = async (req, res) => {
   return res.status(200).json(users);
 };
 
-const getUser = async (req, res) => {
-  const { id } = req.params;
-  const user = await getUserbyIdService(id);
+const getUserById = async (req, res) => {
+  const { user } = req;
   return res.status(200).json(user);
 };
 
@@ -26,8 +24,8 @@ const createUser = async (req, res) => {
 const updateUser = async (req, res) => {
   const { id } = req.params;
   const user = req.body;
-  const updatedUser = await updateUserService(id, user);
-  return res.status(200).json(updatedUser);
+  await updateUserService(id, user);
+  return res.status(200).json({ id, ...user });
 };
 
 const deleteUser = async (req, res) => {
@@ -38,8 +36,8 @@ const deleteUser = async (req, res) => {
 
 module.exports = {
   getAllUsers,
-  getUser,
+  getUserById,
   createUser,
   updateUser,
-  deleteUser
+  deleteUser,
 };
