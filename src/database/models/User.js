@@ -25,6 +25,14 @@ const userModel = (sequelize, datatypes) => {
       timestamps: false,
     }
   );
+
+  User.associate = (models) => {
+    User.hasMany(models.CheckList, {
+      foreignKey: "userId",
+      as: "checkLists",
+    });
+  };
+
   return User;
 };
 
