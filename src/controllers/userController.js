@@ -10,13 +10,9 @@ const getAllUsers = async (req, res) => {
   return res.status(200).json(users);
 };
 
-const getUserById = async (req, res, next) => {
-  try {
-    const { user } = req;
-    return res.status(200).json(user);
-  } catch (error) {
-    return next(error);
-  }
+const getUserById = async (req, res) => {
+  const { user } = req;
+  return res.status(200).json(user);
 };
 
 const createUser = async (req, res) => {
