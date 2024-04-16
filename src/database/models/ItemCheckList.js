@@ -4,13 +4,10 @@ const ItemCheckListModel = (sequelize, datatypes) => {
     {
       itemId: {
         type: datatypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
         allowNull: false,
       },
       checkListId: {
         type: datatypes.INTEGER,
-        primaryKey: true,
         allowNull: false,
       },
     },

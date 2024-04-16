@@ -10,8 +10,8 @@
     "test": "jest",
     "test:node": "node --test src/tests/",
     "test:coverage": "jest --coverage",
-    "dropDb": "npx sequelize db:drop",
-    "createDb": "npx sequelize db:create",
+    "drop": "npx sequelize db:drop",
+    "create": "npx sequelize db:create",
     "migrate": "npx sequelize db:migrate",
     "seed": "npx sequelize db:seed:all"
   },

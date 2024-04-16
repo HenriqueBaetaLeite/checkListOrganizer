@@ -7,8 +7,6 @@ module.exports = {
       itemId: {
         field: "item_id",
         type: Sequelize.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
         allowNull: false,
         references: {
           model: "items",
@@ -20,7 +18,6 @@ module.exports = {
       checkListId: {
         field: "check_list_id",
         type: Sequelize.INTEGER,
-        primaryKey: true,
         allowNull: false,
         references: {
           model: "checkLists",
@@ -32,7 +29,7 @@ module.exports = {
     });
   },
 
-  async down(queryInterface, Sequelize) {
+  async down(queryInterface, _Sequelize) {
     await queryInterface.dropTable("itemsCheckLists");
   },
 };
