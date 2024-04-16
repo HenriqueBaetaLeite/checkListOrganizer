@@ -37,3 +37,5 @@ const checkListModel = (sequelize, DataTypes) => {
 
   return CheckList;
 };
+
+module.exports = checkListModel;
