@@ -1,5 +1,3 @@
-const { User } = require('../../database/models');
-
 const { getUserbyIdService } = require('../../services/userService');;
 
 const getUserByIdMiddleware = async (req, res, next) => {

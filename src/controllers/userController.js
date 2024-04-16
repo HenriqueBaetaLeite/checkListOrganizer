@@ -30,7 +30,10 @@ const updateUser = async (req, res) => {
   const { id } = req.params;
   const user = req.body;
   const updatedUser = await updateUserService(id, user);
-  return res.status(200).json(updatedUser);
+  if (!updatedUser) {
+    return res.status(404).json({ message: "Some problem with values" });
+  }
+  return res.status(200).json({ id, ...user });
 };
 
 const deleteUser = async (req, res) => {
@@ -44,5 +47,5 @@ module.exports = {
   getUserById,
   createUser,
   updateUser,
-  deleteUser
+  deleteUser,
 };
