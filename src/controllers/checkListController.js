@@ -23,10 +23,7 @@ const createCheckList = async (req, res) => {
 const updateCheckList = async (req, res) => {
   const { id } = req.params;
   const checkList = req.body;
-  const updatedCheckList = await updateCheckListService(id, checkList);
-  if (!updatedCheckList) {
-    return res.status(404).json({ message: "Some problem with values" });
-  }
+  await updateCheckListService(id, checkList);
   return res.status(200).json({ id, ...checkList });
 };
 
