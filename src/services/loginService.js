@@ -1,10 +1,10 @@
-const { User } = require('../database/models');
+const { User } = require("../database/models");
 
-const loginService = async (email, password) => {
-  const user = await User.findOne({ where: { email, password } });
+const getEmailforLogin = async (email) => {
+  const user = await User.findOne({ where: { email } });
   return user;
 };
 
 module.exports = {
-  loginService,
+  getEmailforLogin,
 };

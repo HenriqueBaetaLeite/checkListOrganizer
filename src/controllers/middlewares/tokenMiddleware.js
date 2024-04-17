@@ -1,4 +1,4 @@
-const { verifyToken } = require("../../services/tokenService");
+const { verifyToken, createToken } = require("../../services/tokenService");
 
 const validateToken = (req, res, next) => {
   const token = req.headers.authorization;
@@ -18,6 +18,7 @@ const validateToken = (req, res, next) => {
 
   next();
 };
+
 
 module.exports = {
   validateToken,

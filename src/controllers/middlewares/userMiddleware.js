@@ -1,5 +1,7 @@
 const { getUserbyIdService } = require("../../services/userService");
 
+const { getEmailforLogin } = require("../../services/loginService");
+
 const getUserByIdMiddleware = async (req, res, next) => {
   const { id } = req.params;
 
@@ -29,7 +31,7 @@ const validateUserFieldsForLogin = async (req, res, next) => {
   next();
 };
 
-const validateEmail = (req, res, next) => {
+const validateEmail = async (req, res, next) => {
   const { email } = req.body;
 
   if (typeof email !== "string") {
@@ -45,7 +47,7 @@ const validateEmail = (req, res, next) => {
   next();
 };
 
-const validatePassword = (req, res, next) => {
+const validatePassword = async (req, res, next) => {
   const { password } = req.body;
 
   if (typeof password !== "string") {
@@ -61,9 +63,46 @@ const validatePassword = (req, res, next) => {
   next();
 };
 
+const sanitizeLogin = async (req, _res, next) => {
+  const email = req.body.email.trim();
+  const password = req.body.password.trim();
+
+  req.login = { email, password };
+
+  next();
+};
+
+const verifyEmailForLogin = async (req, res, next) => {
+  const { email } = req.login;
+
+  const user = await getEmailforLogin(email);
+
+  if (!user) {
+    return res.status(401).json({ message: "Incorrect email or password." });
+  }
+
+  req.user = user.dataValues;
+
+  next();
+};
+
+const verifyPasswordForLogin = async (req, res, next) => {
+  const { password } = req.login;
+  const { password: userPassword } = req.user;
+
+  if (password !== userPassword) {
+    return res.status(401).json({ message: "Incorrect email or password." });
+  }
+
+  next();
+};
+
 module.exports = {
   getUserByIdMiddleware,
   validateUserFieldsForLogin,
   validateEmail,
   validatePassword,
+  sanitizeLogin,
+  verifyEmailForLogin,
+  verifyPasswordForLogin,
 };
