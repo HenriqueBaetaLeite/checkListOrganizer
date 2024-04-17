@@ -1,4 +1,4 @@
-const { verifyToken } = rquire('../../services/tokenService');
+const { verifyToken } = rquire("../../services/tokenService");
 
 const validateToken = (req, res, next) => {
   const token = req.header.authorization;
@@ -9,7 +9,7 @@ const validateToken = (req, res, next) => {
   const bearerToken = token.split(" ");
 
   const isValidToken = verifyToken(bearerToken[1]);
-  
+
   if (bearerToken[0] !== "Bearer" || !isValidToken) {
     return res.status(401).json({ message: "Token is invalid" });
   }

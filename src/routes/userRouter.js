@@ -12,9 +12,15 @@ const {
   getUserByIdMiddleware,
 } = require("../controllers/middlewares/userMiddleware.js");
 
-router.get("/", getAllUsers);
+const {
+  validateToken,
+} = require("../controllers/middlewares/tokenMiddleware.js");
 
 router.post("/", createUser);
+
+router.use(validateToken);
+
+router.get("/", getAllUsers);
 
 router.get("/:id", getUserByIdMiddleware, getUserById);
 

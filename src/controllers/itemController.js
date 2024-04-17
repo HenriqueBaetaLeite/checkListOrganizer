@@ -12,7 +12,7 @@ const getAllItems = async (_req, res) => {
 };
 
 const getItemById = async (req, res) => {
-  const item = req.item;
+  const { item } = req;
   return res.status(200).json(item);
 };
 
