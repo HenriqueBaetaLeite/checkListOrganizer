@@ -5,6 +5,7 @@ const {
   createCheckList,
   updateCheckList,
   deleteCheckList,
+  getAllCheckListsComplete,
 } = require("../controllers/checkListController");
 
 const {
@@ -12,6 +13,8 @@ const {
 } = require("../controllers/middlewares/checkListMiddleware");
 
 router.get("/", getAllCheckLists);
+
+router.get("/complete", getAllCheckListsComplete);
 
 router.post("/", createCheckList);
 

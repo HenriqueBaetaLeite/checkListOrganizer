@@ -3,7 +3,8 @@ const { User } = require("../database/models");
 const getUsersService = async () =>
   User.findAll({ attributes: { exclude: ["password"] } });
 
-const getUserbyIdService = async (id) => User.findByPk(id, {attributes: { exclude: ["password"] }});
+const getUserbyIdService = async (id) =>
+  User.findByPk(id, { attributes: { exclude: ["password"] } });
 
 const getUserByEmailService = async (email) =>
   User.findOne({
