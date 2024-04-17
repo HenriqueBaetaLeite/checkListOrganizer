@@ -13,21 +13,21 @@ const {
 } = require("../controllers/middlewares/userMiddleware.js");
 
 const {
-  validateToken,
+  validateTokenMiddleware,
 } = require("../controllers/middlewares/tokenMiddleware.js");
 
 router.post("/", createUser);
 
-router.use(validateToken);
+router.use(validateTokenMiddleware);
 
 router.get("/", getAllUsers);
 
-// router.use(getUserByIdMiddleware)
+router.use("/:id", getUserByIdMiddleware);
 
-router.get("/:id",  getUserByIdMiddleware, getUserById);
+router.get("/:id", getUserById);
 
-router.put("/:id", getUserByIdMiddleware, updateUser);
+router.put("/:id", updateUser);
 
-router.delete("/:id", getUserByIdMiddleware, deleteUser);
+router.delete("/:id", deleteUser);
 
 module.exports = router;

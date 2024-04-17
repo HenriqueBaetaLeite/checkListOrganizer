@@ -1,25 +1,24 @@
-const { verifyToken, createToken } = require("../../services/tokenService");
+const { verifyToken } = require("../../services/tokenService");
 
-const validateToken = (req, res, next) => {
+const validateTokenMiddleware = (req, res, next) => {
   const token = req.headers.authorization;
 
   if (!token) {
     return res.status(401).json({ message: "Token is required" });
   }
-  const bearerToken = token.split(" ");
+  const [bearerPattern, jwtToken] = token.split(" ");
 
-  const isValidToken = verifyToken(bearerToken[1]);
+  const userDecoded = verifyToken(jwtToken);
 
-  if (bearerToken[0] !== "Bearer" || !isValidToken) {
+  if (bearerPattern !== "Bearer" || !userDecoded) {
     return res.status(401).json({ message: "Token is invalid" });
   }
 
-  req.user = isValidToken;
+  req.user = userDecoded;
 
   next();
 };
 
-
 module.exports = {
-  validateToken,
+  validateTokenMiddleware,
 };
