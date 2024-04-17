@@ -22,7 +22,9 @@ router.use(validateToken);
 
 router.get("/", getAllUsers);
 
-router.get("/:id", getUserByIdMiddleware, getUserById);
+// router.use(getUserByIdMiddleware)
+
+router.get("/:id",  getUserByIdMiddleware, getUserById);
 
 router.put("/:id", getUserByIdMiddleware, updateUser);
 

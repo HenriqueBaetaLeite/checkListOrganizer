@@ -13,7 +13,8 @@ const createToken = (payload) => {
 
 const verifyToken = (token) => {
   try {
-    return jwt.verify(token, secret);
+    const decode = jwt.verify(token, secret);
+    return decode;
   } catch (error) {
     console.error(error);
     return false;
