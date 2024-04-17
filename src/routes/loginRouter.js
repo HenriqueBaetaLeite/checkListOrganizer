@@ -13,9 +13,9 @@ const {
 
 router.use(
   validateUserFieldsForLogin,
+  sanitizeLogin,
   validateEmail,
   validatePassword,
-  sanitizeLogin,
   verifyEmailForLogin,
   verifyPasswordForLogin,
 );

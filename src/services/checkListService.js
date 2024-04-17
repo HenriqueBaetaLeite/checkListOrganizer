@@ -6,7 +6,7 @@ const getAllCheckListsService = async () =>
 const getAllCheckListsCompleteService = async () =>
   CheckList.findAll({
     include: [
-      // { model: User, as: "user", attributes: { exclude: ["password"] } },
+      { model: User, as: "user", attributes: { exclude: ["password"] } },
       { model: Item, as: "itemsList", attributes: { exclude: ["ItemCheckList"] }},
     ],
   });
