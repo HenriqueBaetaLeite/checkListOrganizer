@@ -22,7 +22,7 @@ module.exports = {
           id: 3,
           title: "Lista de Convidados",
           public: true,
-          user_id: 1,
+          user_id: 3,
         },
       ],
       {}

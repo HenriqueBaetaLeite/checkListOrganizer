@@ -23,14 +23,9 @@ const {
   validateTokenMiddleware,
 } = require("../controllers/middlewares/tokenMiddleware.js");
 
-router.post(
-  "/",
-  validateUserFields,
-  validateEmail,
-  validatePassword,
-  verifyEmailForPost,
-  createUser
-);
+const fieldValidations = [validateUserFields, validateEmail, validatePassword];
+
+router.post("/", fieldValidations, verifyEmailForPost, createUser);
 
 router.use(validateTokenMiddleware);
 
@@ -40,8 +35,8 @@ router.use("/:id", getUserByIdMiddleware);
 
 router.get("/:id", getUserById);
 
-router.put("/:id", updateUser);
+router.put("/:id", validateUserFields, updateUser);
 
-router.delete("/:id", deleteUser);
+router.delete("/:id", validateUserFields, deleteUser);
 
 module.exports = router;
