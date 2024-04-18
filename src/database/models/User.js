@@ -19,6 +19,7 @@ const userModel = (sequelize, datatypes) => {
     {
       tableName: "users",
       timestamps: false,
+      paranoid: true,
     }
   );
 

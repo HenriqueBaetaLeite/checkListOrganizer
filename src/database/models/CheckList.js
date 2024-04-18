@@ -25,6 +25,7 @@ const checkListModel = (sequelize, DataTypes) => {
       tableName: "checkLists",
       timestamps: false,
       underscored: true,
+      paranoid: true,
     }
   );
 

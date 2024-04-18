@@ -2,11 +2,11 @@ const ItemCheckListModel = (sequelize, datatypes) => {
   const ItemCheckList = sequelize.define(
     "ItemCheckList",
     {
-      itemId: {
+      checkListId: {
         type: datatypes.INTEGER,
         allowNull: false,
       },
-      checkListId: {
+      itemId: {
         type: datatypes.INTEGER,
         allowNull: false,
       },
@@ -22,12 +22,14 @@ const ItemCheckListModel = (sequelize, datatypes) => {
     models.Item.belongsToMany(models.CheckList, {
       through: ItemCheckList,
       foreignKey: "checkListId",
+      otherKey: "itemId",
       as: "checkList",
     });
 
     models.CheckList.belongsToMany(models.Item, {
       through: ItemCheckList,
       foreignKey: "itemId",
+      ohterKey: "checkListId",
       as: "itemsList",
     });
   };

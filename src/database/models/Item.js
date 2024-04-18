@@ -24,6 +24,7 @@ const ItemModel = (sequelize, datatypes) => {
     {
       tableName: "items",
       timestamps: false,
+      paranoid: true,
     }
   );
 

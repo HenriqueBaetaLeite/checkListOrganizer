@@ -18,12 +18,12 @@ module.exports = {
           public: false,
           user_id: 1,
         },
-        {
-          id: 3,
-          title: "Lista de Convidados",
-          public: true,
-          user_id: 3,
-        },
+        // {
+        //   id: 3,
+        //   title: "Lista de Convidados",
+        //   public: true,
+        //   user_id: 3,
+        // },
       ],
       {}
     );
