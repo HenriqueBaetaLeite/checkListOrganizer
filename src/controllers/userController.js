@@ -19,9 +19,7 @@ const getUserById = async (req, res) => {
 const createUser = async (req, res) => {
   const { email, password } = req.body;
   const passwordHashed = await hashPassword(password);
-
   const newUser = await createUserService({ email, password: passwordHashed });
-  console.log(newUser);
   return res.status(201).json(newUser);
 };
 

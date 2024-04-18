@@ -39,8 +39,6 @@ const verifyEmailForPost = async (req, res, next) => {
 
   const userExists = await getUserByEmailService(email);
 
-  console.log(userExists);
-
   if (userExists) {
     return res.status(400).json({ message: "User already exists!" });
   }
