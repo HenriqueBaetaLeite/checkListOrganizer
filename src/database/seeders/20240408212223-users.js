@@ -8,15 +8,10 @@ module.exports = {
       [
         {
           id: 1,
-          name: "John Doe",
-          email: "johndoe@gmail.com",
-          password: "123456",
-        },
-        {
-          id: 2,
-          name: "Jane Doe",
-          email: "janedoe@gmail.com",
-          password: "123456",
+          email: "euzinho@gmail.com",
+          password:
+            "$2a$10$6.RYrF.ncWSdadW84sPGu.1tHFkQDTKRfCAFhj1UWxp08W5df.R.i",
+            // senha: "123456"
         },
       ],
       {}

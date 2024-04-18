@@ -37,7 +37,9 @@ const sanitizeLogin = async (req, _res, next) => {
 const verifyEmailForPost = async (req, res, next) => {
   const { email } = req.body;
 
-  const userExists = getUserByEmailService(email);
+  const userExists = await getUserByEmailService(email);
+
+  console.log(userExists);
 
   if (userExists) {
     return res.status(400).json({ message: "User already exists!" });

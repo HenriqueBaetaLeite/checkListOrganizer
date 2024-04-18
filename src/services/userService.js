@@ -1,4 +1,8 @@
+const bcrypt = require('bcryptjs');
+
 const { User } = require("../database/models");
+
+const SALTS = 10;
 
 const getUsersService = async () =>
   User.findAll({ attributes: { exclude: ["password"] } });
@@ -15,6 +19,8 @@ const getUserByEmailService = async (email) =>
       exclude: ["password"],
     },
   });
+
+const hashPassword = async (password) => bcrypt.hash(password, SALTS);
 
 const createUserService = async (user) => User.create(user);
 
@@ -41,4 +47,5 @@ module.exports = {
   createUserService,
   updateUserService,
   deleteUserService,
+  hashPassword,
 };

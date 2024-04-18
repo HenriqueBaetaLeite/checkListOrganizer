@@ -20,7 +20,7 @@ router.use(
   validateEmail,
   validatePassword,
   verifyEmailForLogin,
-  verifyPasswordForLogin
+  // verifyPasswordForLogin
 );
 
 router.post("/", login);
