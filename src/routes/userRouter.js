@@ -10,13 +10,27 @@ const {
 
 const {
   getUserByIdMiddleware,
+  verifyEmailForPost,
 } = require("../controllers/middlewares/userMiddleware.js");
+
+const {
+  validateUserFields,
+  validateEmail,
+  validatePassword,
+} = require("../controllers/middlewares/userFieldsMiddleware.js");
 
 const {
   validateTokenMiddleware,
 } = require("../controllers/middlewares/tokenMiddleware.js");
 
-router.post("/", createUser);
+router.post(
+  "/",
+  validateUserFields,
+  validateEmail,
+  validatePassword,
+  verifyEmailForPost,
+  createUser
+);
 
 router.use(validateTokenMiddleware);
 

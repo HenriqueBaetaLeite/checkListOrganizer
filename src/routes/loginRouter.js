@@ -3,21 +3,24 @@ const router = require("express").Router();
 const { login } = require("../controllers/loginController");
 
 const {
-  validateUserFieldsForLogin,
-  validateEmail,
-  validatePassword,
   sanitizeLogin,
   verifyEmailForLogin,
   verifyPasswordForLogin,
 } = require("../controllers/middlewares/userMiddleware");
 
+const {
+  validateUserFields,
+  validateEmail,
+  validatePassword,
+} = require("../controllers/middlewares/userFieldsMiddleware");
+
 router.use(
-  validateUserFieldsForLogin,
+  validateUserFields,
   sanitizeLogin,
   validateEmail,
   validatePassword,
   verifyEmailForLogin,
-  verifyPasswordForLogin,
+  verifyPasswordForLogin
 );
 
 router.post("/", login);
