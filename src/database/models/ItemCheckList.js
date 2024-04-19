@@ -21,15 +21,13 @@ const ItemCheckListModel = (sequelize, datatypes) => {
   ItemCheckList.associate = (models) => {
     models.Item.belongsToMany(models.CheckList, {
       through: ItemCheckList,
-      foreignKey: "checkListId",
-      otherKey: "itemId",
+      foreignKey: "itemId",
       as: "checkList",
     });
-
+    
     models.CheckList.belongsToMany(models.Item, {
       through: ItemCheckList,
-      foreignKey: "itemId",
-      ohterKey: "checkListId",
+      foreignKey: "checkListId",
       as: "itemsList",
     });
   };

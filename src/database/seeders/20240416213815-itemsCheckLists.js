@@ -14,18 +14,6 @@ module.exports = {
           check_list_id: 1,
           item_id: 2,
         },
-        // {
-        //   check_list_id: 2,
-        //   item_id: 3,
-        // },
-        // {
-        //   check_list_id: 3,
-        //   item_id: 1,
-        // },
-        // {
-        //   check_list_id: 3,
-        //   item_id: 4,
-        // },
       ],
       {}
     );

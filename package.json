@@ -13,7 +13,9 @@
     "drop": "npx sequelize db:drop",
     "create": "npx sequelize db:create",
     "migrate": "npx sequelize db:migrate",
-    "seed": "npx sequelize db:seed:all"
+    "seed": "npx sequelize db:seed:all",
+    "reset": "npx sequelize db:drop && npx sequelize db:create && npx sequelize db:migrate",
+    "stress": "artillery quick --count 10 -n 20 http://localhost:3001"
   },
   "license": "ISC",
   "dependencies": {
