@@ -7,9 +7,7 @@ const options = {
 
 const secret = process.env.SECRET;
 
-const createToken = (payload) => {
-  return jwt.sign(payload, secret, options);
-};
+const createToken = (payload) => jwt.sign(payload, secret, options);
 
 const verifyToken = (token) => {
   try {
