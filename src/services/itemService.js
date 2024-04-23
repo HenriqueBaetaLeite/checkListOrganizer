@@ -6,9 +6,8 @@ const getItemByIdService = async (id) => Item.findByPk(id);
 
 const createItemService = async (item) => Item.create(item);
 
-const updateItemService = async (id, item) => {
-  await Item.update(item, { where: { id } });
-};
+const updateItemService = async (id, item) =>
+  Item.update(item, { where: { id } });
 
 const deleteItemService = async (id) => Item.destroy({ where: { id } });
 
