@@ -24,12 +24,11 @@ const getCheckListByIdService = async (id) =>
 
 const createCheckListService = async (checkList) => CheckList.create(checkList);
 
-const updateCheckListService = async (id, checkList) => {
-  const [checkListUpdated] = await CheckList.update(checkList, {
+const updateCheckListService = async (id, checkList) =>
+  CheckList.update(checkList, {
     where: { id },
   });
-  return checkListUpdated;
-};
+
 const deleteCheckListService = async (id) =>
   CheckList.destroy({
     where: { id },
