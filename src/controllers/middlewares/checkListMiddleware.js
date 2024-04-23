@@ -18,6 +18,17 @@ const getCheckListByIdMiddleware = async (req, res, next) => {
   next();
 };
 
+const validateCheckListFields = (req, res, next) => {
+  const { title } = req.body;
+
+  if (!title) {
+    return res.status(400).json({ message: "Invalid fields." });
+  }
+
+  next();
+}
+
 module.exports = {
   getCheckListByIdMiddleware,
+  validateCheckListFields,
 };

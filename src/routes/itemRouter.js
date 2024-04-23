@@ -11,14 +11,16 @@ const {
   getItemByIdMiddleware,
 } = require("../controllers/middlewares/itemMiddleware");
 
-router.get("/", getAllItems);
-
-router.get("/:id", getItemByIdMiddleware, getItemById);
-
 router.post("/", createItem);
 
-router.put("/:id", getItemByIdMiddleware, updateItem);
+router.get("/", getAllItems);
 
-router.delete("/:id", getItemByIdMiddleware, deleteItem);
+router.use("/:id", getItemByIdMiddleware);
+
+router.get("/:id", getItemById);
+
+router.put("/:id", updateItem);
+
+router.delete("/:id", deleteItem);
 
 module.exports = router;

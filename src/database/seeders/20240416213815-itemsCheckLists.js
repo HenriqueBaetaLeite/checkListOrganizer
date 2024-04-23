@@ -14,6 +14,18 @@ module.exports = {
           check_list_id: 1,
           item_id: 2,
         },
+        {
+          check_list_id: 2,
+          item_id: 2,
+        },
+        {
+          check_list_id: 3,
+          item_id: 4,
+        },
+        {
+          check_list_id: 3,
+          item_id: 5,
+        },
       ],
       {}
     );

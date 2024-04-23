@@ -37,6 +37,6 @@ router.get("/:id", getUserById);
 
 router.put("/:id", validateUserFields, updateUser);
 
-router.delete("/:id", validateUserFields, deleteUser);
+router.delete("/:id", deleteUser);
 
 module.exports = router;

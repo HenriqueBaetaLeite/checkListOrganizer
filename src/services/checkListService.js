@@ -1,3 +1,4 @@
+const { where } = require("sequelize");
 const { CheckList, User, Item, ItemCheckList } = require("../database/models");
 
 const getAllCheckListsService = async () =>
@@ -5,13 +6,15 @@ const getAllCheckListsService = async () =>
 
 const getAllCheckListsCompleteService = async () =>
   CheckList.findAll({
+    where: { public: true },
+    attributes: { exclude: ["id", "userId", "public"] },
     include: [
-      // { model: User, as: "user", attributes: { exclude: ["password"] } },
+      { model: User, as: "user", attributes: { exclude: ["password"] } },
       {
         model: Item,
         as: "itemsList",
-        through: { attributes: ["itemId", "checkListId"] },
-        attributes: { exclude: ["description", "completed"] },
+        through: { attributes: [] },
+        attributes: { exclude: ["id", "completed"] },
       },
     ],
   });

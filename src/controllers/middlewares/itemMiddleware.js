@@ -18,6 +18,17 @@ const getItemByIdMiddleware = async (req, res, next) => {
   next();
 }
 
+const validateItemsFields = (req, res, next) => {
+  const { name, description } = req.body;
+
+  if (!name || !description) {
+    return res.status(400).json({ message: "Invalid fields." });
+  }
+
+  next();
+}
+
 module.exports = {
   getItemByIdMiddleware,
+  validateItemsFields,
 };
