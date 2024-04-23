@@ -1,5 +1,4 @@
-const { where } = require("sequelize");
-const { CheckList, User, Item, ItemCheckList } = require("../database/models");
+const { CheckList, User, Item } = require("../database/models");
 
 const getAllCheckListsService = async () =>
   CheckList.findAll({ where: { public: true } });
