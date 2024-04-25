@@ -11,19 +11,22 @@ const {
 const {
   getCheckListByIdMiddleware,
   validateCheckListFields,
+  sanitizeCheckListFields,
 } = require("../controllers/middlewares/checkListMiddleware");
+
+const checkListValidations = [validateCheckListFields, sanitizeCheckListFields];
 
 router.get("/", getAllCheckLists);
 
 router.get("/complete", getAllCheckListsComplete);
 
-router.post("/", validateCheckListFields, createCheckList);
+router.post("/", checkListValidations, createCheckList);
 
 router.use("/:id", getCheckListByIdMiddleware);
 
 router.get("/:id", getCheckListById);
 
-router.put("/:id", validateCheckListFields, updateCheckList);
+router.put("/:id", checkListValidations, updateCheckList);
 
 router.delete("/:id", deleteCheckList);
 
