@@ -27,7 +27,7 @@ const fieldValidations = [validateUserFields, validateEmail, validatePassword];
 
 router.post("/", fieldValidations, verifyEmailForPost, createUser);
 
-router.use(validateTokenMiddleware);
+// router.use(validateTokenMiddleware);
 
 router.get("/", getAllUsers);
 

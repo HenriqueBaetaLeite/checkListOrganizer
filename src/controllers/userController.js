@@ -20,7 +20,11 @@ const createUser = async (req, res) => {
   const { email, password } = req.body;
   const passwordHashed = await hashPassword(password);
   const newUser = await createUserService({ email, password: passwordHashed });
-  return res.status(201).json(newUser);
+  const user = {
+    id: newUser.id,
+    email: newUser.email,
+  };
+  return res.status(201).json(user);
 };
 
 const updateUser = async (req, res) => {
