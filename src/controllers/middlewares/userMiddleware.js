@@ -7,7 +7,7 @@ const {
 
 const { getEmailforLogin } = require("../../services/loginService");
 
-const getUserByIdMiddleware = async (req, res, next) => {
+const findUserByIdMiddleware = async (req, res, next) => {
   const { id } = req.params;
 
   if (isNaN(id)) {
@@ -74,7 +74,7 @@ const verifyPasswordForLogin = async (req, res, next) => {
 };
 
 module.exports = {
-  getUserByIdMiddleware,
+  findUserByIdMiddleware,
   sanitizeLogin,
   verifyEmailForLogin,
   verifyPasswordForLogin,

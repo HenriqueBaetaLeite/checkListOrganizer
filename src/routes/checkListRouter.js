@@ -9,7 +9,7 @@ const {
 } = require("../controllers/checkListController");
 
 const {
-  getCheckListByIdMiddleware,
+  findCheckListByIdMiddleware,
   validateCheckListFields,
   sanitizeCheckListFields,
 } = require("../controllers/middlewares/checkListMiddleware");
@@ -22,7 +22,7 @@ router.get("/complete", getAllCheckListsComplete);
 
 router.post("/", checkListValidations, createCheckList);
 
-router.use("/:id", getCheckListByIdMiddleware);
+router.use("/:id", findCheckListByIdMiddleware);
 
 router.get("/:id", getCheckListById);
 

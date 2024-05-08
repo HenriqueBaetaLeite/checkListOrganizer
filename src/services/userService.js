@@ -1,23 +1,23 @@
-const bcrypt = require('bcryptjs');
+const bcrypt = require("bcryptjs");
 
 const { User } = require("../database/models");
 
 const SALTS = 10;
 
-const getUsersService = async () =>
-  User.findAll({ attributes: { exclude: ["password"] } });
+const excludePassword = {
+  attributes: { exclude: ["password"] },
+};
 
-const getUserbyIdService = async (id) =>
-  User.findByPk(id, { attributes: { exclude: ["password"] } });
+const getUsersService = async () => User.findAll(excludePassword);
+
+const getUserbyIdService = async (id) => User.findByPk(id, excludePassword);
 
 const getUserByEmailService = async (email) =>
   User.findOne({
     where: {
       email,
     },
-    attributes: {
-      exclude: ["password"],
-    },
+    excludePassword,
   });
 
 const hashPassword = async (password) => bcrypt.hash(password, SALTS);

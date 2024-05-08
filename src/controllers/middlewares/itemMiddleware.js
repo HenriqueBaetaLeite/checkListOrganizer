@@ -1,6 +1,6 @@
 const { getItemByIdService } = require('../../services/itemService');
 
-const getItemByIdMiddleware = async (req, res, next) => {
+const findItemByIdMiddleware = async (req, res, next) => {
   const { id } = req.params;
 
   if (isNaN(id)) {
@@ -29,6 +29,6 @@ const validateItemsFields = (req, res, next) => {
 }
 
 module.exports = {
-  getItemByIdMiddleware,
+  findItemByIdMiddleware,
   validateItemsFields,
 };

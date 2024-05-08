@@ -9,7 +9,7 @@ const {
 } = require("../controllers/userController.js");
 
 const {
-  getUserByIdMiddleware,
+  findUserByIdMiddleware,
   verifyEmailForPost,
 } = require("../controllers/middlewares/userMiddleware.js");
 
@@ -27,11 +27,11 @@ const fieldValidations = [validateUserFields, validateEmail, validatePassword];
 
 router.post("/", fieldValidations, verifyEmailForPost, createUser);
 
-// router.use(validateTokenMiddleware);
+router.use(validateTokenMiddleware);
 
 router.get("/", getAllUsers);
 
-router.use("/:id", getUserByIdMiddleware);
+router.use("/:id", findUserByIdMiddleware);
 
 router.get("/:id", getUserById);
 

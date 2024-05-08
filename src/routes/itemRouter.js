@@ -8,14 +8,14 @@ const {
 } = require("../controllers/itemController");
 
 const {
-  getItemByIdMiddleware,
+  findItemByIdMiddleware,
 } = require("../controllers/middlewares/itemMiddleware");
 
 router.post("/", createItem);
 
 router.get("/", getAllItems);
 
-router.use("/:id", getItemByIdMiddleware);
+router.use("/:id", findItemByIdMiddleware);
 
 router.get("/:id", getItemById);
 

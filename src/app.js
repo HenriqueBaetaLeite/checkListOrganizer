@@ -12,9 +12,7 @@ const errorMiddleware = require("./controllers/middlewares/errorMiddleware");
 const app = express();
 app.use(express.json());
 
-app.get("/health", (_req, res) =>
-  res.status(200).json({ message: "API is working" })
-);
+app.get("/health", (_req, res) => res.status(200).send("API is working"));
 
 app.use("/api/login", loginRouter);
 

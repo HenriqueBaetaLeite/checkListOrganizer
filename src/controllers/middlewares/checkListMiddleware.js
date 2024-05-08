@@ -1,6 +1,6 @@
 const { getCheckListByIdService } = require("../../services/checkListService");
 
-const getCheckListByIdMiddleware = async (req, res, next) => {
+const findCheckListByIdMiddleware = async (req, res, next) => {
   const { id } = req.params;
 
   if (isNaN(id)) {
@@ -40,7 +40,7 @@ const sanitizeCheckListFields = (req, _res, next) => {
 };
 
 module.exports = {
-  getCheckListByIdMiddleware,
+  findCheckListByIdMiddleware,
   validateCheckListFields,
   sanitizeCheckListFields,
 };
