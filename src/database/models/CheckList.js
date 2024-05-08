@@ -13,7 +13,6 @@ const checkListModel = (sequelize, DataTypes) => {
       },
       public: {
         type: DataTypes.BOOLEAN,
-        allowNull: false,
         defaultValue: false,
       },
       userId: {
