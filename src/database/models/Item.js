@@ -17,15 +17,16 @@ const ItemModel = (sequelize, datatypes) => {
       },
       completed: {
         type: datatypes.BOOLEAN,
-        allowNull: false,
         defaultValue: false,
       },
     },
     {
       tableName: "items",
       timestamps: false,
+      paranoid: true,
     }
   );
+
   return Item;
 };
 

@@ -5,20 +5,29 @@ const {
   createCheckList,
   updateCheckList,
   deleteCheckList,
+  getAllCheckListsComplete,
 } = require("../controllers/checkListController");
 
 const {
-  getCheckListByIdMiddleware,
+  findCheckListByIdMiddleware,
+  validateCheckListFields,
+  sanitizeCheckListFields,
 } = require("../controllers/middlewares/checkListMiddleware");
+
+const checkListValidations = [validateCheckListFields, sanitizeCheckListFields];
 
 router.get("/", getAllCheckLists);
 
-router.post("/", createCheckList);
+router.get("/complete", getAllCheckListsComplete);
 
-router.get("/:id", getCheckListByIdMiddleware, getCheckListById);
+router.post("/", checkListValidations, createCheckList);
 
-router.put("/:id", getCheckListByIdMiddleware, updateCheckList);
+router.use("/:id", findCheckListByIdMiddleware);
 
-router.delete("/:id", getCheckListByIdMiddleware, deleteCheckList);
+router.get("/:id", getCheckListById);
+
+router.put("/:id", checkListValidations, updateCheckList);
+
+router.delete("/:id", deleteCheckList);
 
 module.exports = router;

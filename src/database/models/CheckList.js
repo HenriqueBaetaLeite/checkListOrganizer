@@ -13,7 +13,6 @@ const checkListModel = (sequelize, DataTypes) => {
       },
       public: {
         type: DataTypes.BOOLEAN,
-        allowNull: false,
         defaultValue: false,
       },
       userId: {
@@ -25,6 +24,7 @@ const checkListModel = (sequelize, DataTypes) => {
       tableName: "checkLists",
       timestamps: false,
       underscored: true,
+      paranoid: true,
     }
   );
 

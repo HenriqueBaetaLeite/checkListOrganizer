@@ -9,17 +9,34 @@ const {
 } = require("../controllers/userController.js");
 
 const {
-  getUserByIdMiddleware,
+  findUserByIdMiddleware,
+  verifyEmailForPost,
 } = require("../controllers/middlewares/userMiddleware.js");
+
+const {
+  validateUserFields,
+  validateEmail,
+  validatePassword,
+} = require("../controllers/middlewares/userFieldsMiddleware.js");
+
+const {
+  validateTokenMiddleware,
+} = require("../controllers/middlewares/tokenMiddleware.js");
+
+const fieldValidations = [validateUserFields, validateEmail, validatePassword];
+
+router.post("/", fieldValidations, verifyEmailForPost, createUser);
+
+router.use(validateTokenMiddleware);
 
 router.get("/", getAllUsers);
 
-router.post("/", createUser);
+router.use("/:id", findUserByIdMiddleware);
 
-router.get("/:id", getUserByIdMiddleware, getUserById);
+router.get("/:id", getUserById);
 
-router.put("/:id", getUserByIdMiddleware, updateUser);
+router.put("/:id", validateUserFields, updateUser);
 
-router.delete("/:id", getUserByIdMiddleware, deleteUser);
+router.delete("/:id", deleteUser);
 
 module.exports = router;

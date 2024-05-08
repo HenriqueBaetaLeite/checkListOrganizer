@@ -3,12 +3,19 @@ const {
   createCheckListService,
   updateCheckListService,
   deleteCheckListService,
+  getAllCheckListsCompleteService,
 } = require("../services/checkListService");
 
 const getAllCheckLists = async (_req, res) => {
   const checkLists = await getAllCheckListsService();
   return res.status(200).json(checkLists);
 };
+
+const getAllCheckListsComplete = async (req, res) => {
+  const completeCheckLists = await getAllCheckListsCompleteService();
+  return res.status(200).json(completeCheckLists);
+}
+
 const getCheckListById = async (req, res) => {
   const { checkList } = req;
   return res.status(200).json(checkList);
@@ -39,4 +46,5 @@ module.exports = {
   createCheckList,
   updateCheckList,
   deleteCheckList,
+  getAllCheckListsComplete,
 };

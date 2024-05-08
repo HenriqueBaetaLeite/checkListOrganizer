@@ -3,6 +3,7 @@ const {
   createUserService,
   updateUserService,
   deleteUserService,
+  hashPassword,
 } = require("../services/userService");
 
 const getAllUsers = async (req, res) => {
@@ -16,9 +17,14 @@ const getUserById = async (req, res) => {
 };
 
 const createUser = async (req, res) => {
-  const user = req.body;
-  const newUser = await createUserService(user);
-  return res.status(201).json(newUser);
+  const { email, password } = req.body;
+  const passwordHashed = await hashPassword(password);
+  const newUser = await createUserService({ email, password: passwordHashed });
+  const user = {
+    id: newUser.id,
+    email: newUser.email,
+  };
+  return res.status(201).json(user);
 };
 
 const updateUser = async (req, res) => {

@@ -10,14 +10,18 @@
     "test": "jest",
     "test:node": "node --test src/tests/",
     "test:coverage": "jest --coverage",
-    "dropDb": "npx sequelize db:drop",
-    "createDb": "npx sequelize db:create",
+    "drop": "npx sequelize db:drop",
+    "create": "npx sequelize db:create",
     "migrate": "npx sequelize db:migrate",
-    "seed": "npx sequelize db:seed:all"
+    "seed": "npx sequelize db:seed:all",
+    "reset": "npx sequelize db:drop && npx sequelize db:create && npx sequelize db:migrate",
+    "stress": "artillery quick --count 10 -n 20 http://localhost:3001"
   },
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.9.3",
     "sequelize": "^6.37.2",
     "swagger-ui-express": "^5.0.0"

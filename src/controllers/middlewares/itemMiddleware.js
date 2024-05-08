@@ -1,6 +1,6 @@
 const { getItemByIdService } = require('../../services/itemService');
 
-const getItemByIdMiddleware = async (req, res, next) => {
+const findItemByIdMiddleware = async (req, res, next) => {
   const { id } = req.params;
 
   if (isNaN(id)) {
@@ -18,6 +18,17 @@ const getItemByIdMiddleware = async (req, res, next) => {
   next();
 }
 
+const validateItemsFields = (req, res, next) => {
+  const { name, description } = req.body;
+
+  if (!name || !description) {
+    return res.status(400).json({ message: "Invalid fields." });
+  }
+
+  next();
+}
+
 module.exports = {
-  getItemByIdMiddleware,
+  findItemByIdMiddleware,
+  validateItemsFields,
 };
