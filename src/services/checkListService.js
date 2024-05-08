@@ -23,12 +23,6 @@ const getCheckListByIdService = async (id) =>
 
 const createCheckListService = async (checkList) => CheckList.create(checkList);
 
-const createCheckListTasks = async (checkListId, tasks) => {
-  await Promise.all(
-    tasks.map((task) => ItemCheckList.create({ checkListId, itemId: task }))
-  );
-};
-
 const updateCheckListService = async (id, checkList) =>
   CheckList.update(checkList, {
     where: { id },
@@ -43,7 +37,6 @@ module.exports = {
   getAllCheckListsService,
   getCheckListByIdService,
   createCheckListService,
-  createCheckListTasks,
   updateCheckListService,
   deleteCheckListService,
   getAllCheckListsCompleteService,

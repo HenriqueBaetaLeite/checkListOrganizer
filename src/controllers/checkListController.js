@@ -1,7 +1,6 @@
 const {
   getAllCheckListsService,
   createCheckListService,
-  createCheckListTasks,
   updateCheckListService,
   deleteCheckListService,
   getAllCheckListsCompleteService,
