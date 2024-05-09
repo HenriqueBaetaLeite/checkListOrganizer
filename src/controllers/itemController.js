@@ -16,8 +16,8 @@ const getItemById = async (req, res) => {
 };
 
 const createItem = async (req, res) => {
-  const item = req.body;
-  const newItem = await createItemService(item);
+  const { checkListId, name, description } = req.body;
+  const newItem = await createItemService(checkListId, { name, description });
   return res.status(201).json(newItem);
 };
 

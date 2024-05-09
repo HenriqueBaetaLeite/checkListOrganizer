@@ -24,6 +24,7 @@ const getCheckListById = async (req, res) => {
 const createCheckList = async (req, res) => {
   const checkList = req.body;
   const newCheckList = await createCheckListService(checkList);
+  console.log(newCheckList);
   return res.status(201).json(newCheckList);
 };
 
