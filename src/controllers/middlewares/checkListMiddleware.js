@@ -19,9 +19,9 @@ const findCheckListByIdMiddleware = async (req, res, next) => {
 };
 
 const validateCheckListFields = (req, res, next) => {
-  const { title, public, userId } = req.body;
+  const { title, public } = req.body;
 
-  if (!title || !public || !userId) {
+  if (!title || public === undefined || typeof public !== "boolean") {
     return res.status(400).json({ message: "Invalid fields." });
   }
 
@@ -32,7 +32,7 @@ const sanitizeCheckListFields = (req, _res, next) => {
   const { title, public } = req.body;
 
   req.body = {
-    ...req.body,
+    public,
     title: title.trim(),
   };
 

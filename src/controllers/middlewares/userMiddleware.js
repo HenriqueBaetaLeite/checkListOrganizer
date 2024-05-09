@@ -34,18 +34,6 @@ const sanitizeLogin = async (req, _res, next) => {
   next();
 };
 
-const verifyEmailForPost = async (req, res, next) => {
-  const { email } = req.body;
-
-  const userExists = await getUserByEmailService(email);
-
-  if (userExists) {
-    return res.status(400).json({ message: "User already exists!" });
-  }
-
-  next();
-};
-
 const verifyEmailForLogin = async (req, res, next) => {
   const { email } = req.login;
 
@@ -68,6 +56,18 @@ const verifyPasswordForLogin = async (req, res, next) => {
 
   if (!isValidPassword) {
     return res.status(400).json({ message: "Incorrect password!" });
+  }
+
+  next();
+};
+
+const verifyEmailForPost = async (req, res, next) => {
+  const { email } = req.body;
+
+  const userExists = await getUserByEmailService(email);
+
+  if (userExists) {
+    return res.status(400).json({ message: "User already exists!" });
   }
 
   next();

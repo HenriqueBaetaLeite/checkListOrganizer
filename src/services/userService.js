@@ -8,6 +8,8 @@ const excludePassword = {
   attributes: { exclude: ["password"] },
 };
 
+const hashPassword = async (password) => bcrypt.hash(password, SALTS);
+
 const getUsersService = async () => User.findAll(excludePassword);
 
 const getUserByIdService = async (id) => User.findByPk(id, excludePassword);
@@ -19,8 +21,6 @@ const getUserByEmailService = async (email) =>
     },
     excludePassword,
   });
-
-const hashPassword = async (password) => bcrypt.hash(password, SALTS);
 
 const createUserService = async (user) => User.create(user);
 
