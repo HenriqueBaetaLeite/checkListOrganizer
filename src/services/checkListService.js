@@ -21,12 +21,7 @@ const getAllCheckListsCompleteService = async () =>
 const getCheckListByIdService = async (id) =>
   CheckList.findOne({ where: { id, public: true } });
 
-const createCheckListService = async (checkList) => {
-  console.log(checkList, "here!!");
-  const checkListCreated = await CheckList.create(checkList);
-
-  console.log(checkListCreated);
-};
+const createCheckListService = async (checkList) => CheckList.create(checkList);
 
 const updateCheckListService = async (id, checkList) =>
   CheckList.update(checkList, {

@@ -10,7 +10,7 @@ const excludePassword = {
 
 const getUsersService = async () => User.findAll(excludePassword);
 
-const getUserbyIdService = async (id) => User.findByPk(id, excludePassword);
+const getUserByIdService = async (id) => User.findByPk(id, excludePassword);
 
 const getUserByEmailService = async (email) =>
   User.findOne({
@@ -42,7 +42,7 @@ const deleteUserService = async (id) =>
 
 module.exports = {
   getUsersService,
-  getUserbyIdService,
+  getUserByIdService,
   getUserByEmailService,
   createUserService,
   updateUserService,

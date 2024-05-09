@@ -14,7 +14,7 @@ const getAllCheckLists = async (_req, res) => {
 const getAllCheckListsComplete = async (req, res) => {
   const completeCheckLists = await getAllCheckListsCompleteService();
   return res.status(200).json(completeCheckLists);
-}
+};
 
 const getCheckListById = async (req, res) => {
   const { checkList } = req;
@@ -23,7 +23,8 @@ const getCheckListById = async (req, res) => {
 
 const createCheckList = async (req, res) => {
   const checkList = req.body;
-  const newCheckList = await createCheckListService(checkList);
+  const userId = req.user.id;
+  const newCheckList = await createCheckListService({ ...checkList, userId });
   console.log(newCheckList);
   return res.status(201).json(newCheckList);
 };

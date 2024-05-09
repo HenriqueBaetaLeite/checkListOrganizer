@@ -14,7 +14,11 @@ const {
   sanitizeCheckListFields,
 } = require("../controllers/middlewares/checkListMiddleware");
 
+const { validateTokenMiddleware } = require('../controllers/middlewares/tokenMiddleware');
+
 const checkListValidations = [validateCheckListFields, sanitizeCheckListFields];
+
+router.use(validateTokenMiddleware);
 
 router.get("/", getAllCheckLists);
 

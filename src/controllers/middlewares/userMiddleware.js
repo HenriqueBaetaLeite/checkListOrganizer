@@ -1,7 +1,7 @@
 const bcrypt = require("bcryptjs");
 
 const {
-  getUserbyIdService,
+  getUserByIdService,
   getUserByEmailService,
 } = require("../../services/userService");
 
@@ -14,7 +14,7 @@ const findUserByIdMiddleware = async (req, res, next) => {
     return res.status(400).json({ message: "Invalid id parameter." });
   }
 
-  const user = await getUserbyIdService(id);
+  const user = await getUserByIdService(id);
 
   if (!user) {
     return res.status(404).json({ message: "User not found." });
