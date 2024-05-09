@@ -1,6 +1,5 @@
 const {
   getAllItemsService,
-  getItemByIdService,
   createItemService,
   updateItemService,
   deleteItemService,

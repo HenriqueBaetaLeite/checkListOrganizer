@@ -6,12 +6,6 @@ const createItemCheckList = async (checkListId, tasks) => {
   );
 };
 
-const removeItemCheckList = async (itemId, checkListId) => {
-  await Item.destroy({ where: { itemId } });
-  await ItemCheckList.destroy({ where: { itemId, checkListId } });
-};
-
 module.exports = {
   createItemCheckList,
-  removeItemCheckList,
 };

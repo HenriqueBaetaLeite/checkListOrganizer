@@ -4,7 +4,7 @@ const config = {
   database: process.env.MYSQL_DATABASE,
   host: process.env.MYSQL_HOST,
   dialect: 'mysql',
-  logging: false,
+  // logging: false,
 };
 
 module.exports = {
