@@ -2,6 +2,7 @@ const {
   getAllItemsService,
   createItemService,
   updateItemService,
+  updateCompleteItem,
   deleteItemService,
 } = require("../services/itemService");
 
