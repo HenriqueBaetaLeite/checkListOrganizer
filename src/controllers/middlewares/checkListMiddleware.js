@@ -39,15 +39,13 @@ const sanitizeCheckListFields = (req, _res, next) => {
   next();
 };
 
-const validateCheckListWithIdOwner = async (req, res, next) => {
-  console.log(req.user, req.checkList);
-  
+const validateCheckListWithIdOwner = (req, res, next) => {
   const userId = req.user.id;
 
   const checkListOwnerId = req.checkList.userId;
 
   if (userId !== checkListOwnerId) {
-    return res.status(404).json({ message: "operação inválida!" });
+    return res.status(404).json({ message: "Operação inválida!" });
   }
 
   next();

@@ -25,7 +25,7 @@ const findUserByIdMiddleware = async (req, res, next) => {
   next();
 };
 
-const sanitizeLogin = async (req, _res, next) => {
+const sanitizeLogin = (req, _res, next) => {
   const email = req.body.email.trim();
   const password = req.body.password.trim();
 
@@ -73,10 +73,22 @@ const verifyEmailForPost = async (req, res, next) => {
   next();
 };
 
+const validateUserForDeleteAndUpdate = (req, res, next) => {
+  const userId = req.user.id;
+  const { id } = req.params;
+
+  if (userId !== id) {
+    return res.status(409).json({ message: "Operação inválida" });
+  }
+
+  next();
+};
+
 module.exports = {
   findUserByIdMiddleware,
   sanitizeLogin,
   verifyEmailForLogin,
   verifyPasswordForLogin,
   verifyEmailForPost,
+  validateUserForDeleteAndUpdate,
 };

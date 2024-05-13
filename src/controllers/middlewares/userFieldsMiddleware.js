@@ -1,4 +1,4 @@
-const validateUserFields = async (req, res, next) => {
+const validateUserFields = (req, res, next) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
@@ -9,7 +9,7 @@ const validateUserFields = async (req, res, next) => {
   next();
 };
 
-const validateEmail = async (req, res, next) => {
+const validateEmail = (req, res, next) => {
   const { email } = req.body;
 
   if (typeof email !== "string") {
@@ -25,7 +25,7 @@ const validateEmail = async (req, res, next) => {
   next();
 };
 
-const validatePassword = async (req, res, next) => {
+const validatePassword = (req, res, next) => {
   const { password } = req.body;
 
   if (typeof password !== "string") {

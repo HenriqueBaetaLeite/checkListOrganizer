@@ -11,6 +11,7 @@ const {
 const {
   findUserByIdMiddleware,
   verifyEmailForPost,
+  validateUserForDeleteAndUpdate,
 } = require("../controllers/middlewares/userMiddleware.js");
 
 const {
@@ -27,7 +28,7 @@ const fieldValidations = [validateUserFields, validateEmail, validatePassword];
 
 router.post("/", fieldValidations, verifyEmailForPost, createUser);
 
-// router.use(validateTokenMiddleware);
+router.use(validateTokenMiddleware);
 
 router.get("/", getAllUsers);
 
@@ -35,8 +36,8 @@ router.use("/:id", findUserByIdMiddleware);
 
 router.get("/:id", getUserById);
 
-router.put("/:id", validateUserFields, updateUser);
+router.put("/:id", validateUserForDeleteAndUpdate, validateUserFields, updateUser);
 
-router.delete("/:id", deleteUser);
+router.delete("/:id", validateUserForDeleteAndUpdate, deleteUser);
 
 module.exports = router;
