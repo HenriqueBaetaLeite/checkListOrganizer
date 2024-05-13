@@ -11,7 +11,7 @@ const getAllCheckLists = async (_req, res) => {
   return res.status(200).json(checkLists);
 };
 
-const getAllCheckListsComplete = async (req, res) => {
+const getAllCheckListsComplete = async (_req, res) => {
   const completeCheckLists = await getAllCheckListsCompleteService();
   return res.status(200).json(completeCheckLists);
 };
@@ -25,7 +25,6 @@ const createCheckList = async (req, res) => {
   const checkList = req.body;
   const userId = req.user.id;
   const newCheckList = await createCheckListService({ ...checkList, userId });
-  console.log(newCheckList);
   return res.status(201).json(newCheckList);
 };
 
