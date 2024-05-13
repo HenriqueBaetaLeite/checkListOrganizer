@@ -36,7 +36,12 @@ router.use("/:id", findUserByIdMiddleware);
 
 router.get("/:id", getUserById);
 
-router.put("/:id", validateUserForDeleteAndUpdate, validateUserFields, updateUser);
+router.put(
+  "/:id",
+  validateUserForDeleteAndUpdate,
+  fieldValidations,
+  updateUser
+);
 
 router.delete("/:id", validateUserForDeleteAndUpdate, deleteUser);
 
