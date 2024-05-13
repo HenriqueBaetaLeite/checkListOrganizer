@@ -12,9 +12,12 @@ const {
   findCheckListByIdMiddleware,
   validateCheckListFields,
   sanitizeCheckListFields,
+  validateCheckListWithIdOwner,
 } = require("../controllers/middlewares/checkListMiddleware");
 
-const { validateTokenMiddleware } = require('../controllers/middlewares/tokenMiddleware');
+const {
+  validateTokenMiddleware,
+} = require("../controllers/middlewares/tokenMiddleware");
 
 const checkListValidations = [validateCheckListFields, sanitizeCheckListFields];
 
@@ -30,8 +33,13 @@ router.use("/:id", findCheckListByIdMiddleware);
 
 router.get("/:id", getCheckListById);
 
-router.put("/:id", checkListValidations, updateCheckList);
+router.put(
+  "/:id",
+  validateCheckListWithIdOwner,
+  checkListValidations,
+  updateCheckList
+);
 
-router.delete("/:id", deleteCheckList);
+router.delete("/:id", validateCheckListWithIdOwner, deleteCheckList);
 
 module.exports = router;
