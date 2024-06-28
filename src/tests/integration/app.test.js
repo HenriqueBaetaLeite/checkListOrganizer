@@ -6,7 +6,7 @@ const request = require("supertest");
 describe("Test health router, request to app", () => {
   it("should return 200 when calling /health", async () => {
     const response = await request(app).get("/health");
-    assert(response.status, 200);
-    assert(response.body, { message: "API is working" });
+    assert.strictEqual(response.status, 200);
+    assert.strictEqual(response.text, "API is working");
   });
 });

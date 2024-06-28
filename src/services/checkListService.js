@@ -1,4 +1,4 @@
-const { CheckList, User, Item, ItemCheckList } = require("../database/models");
+const { CheckList, User, Item } = require("../database/models");
 
 const getAllCheckListsService = async () =>
   CheckList.findAll({ where: { public: true } });
@@ -6,7 +6,7 @@ const getAllCheckListsService = async () =>
 const getAllCheckListsCompleteService = async () =>
   CheckList.findAll({
     where: { public: true },
-    attributes: { exclude: ["id", "userId", "public"] },
+    attributes: { exclude: ["userId", "public"] },
     include: [
       { model: User, as: "user", attributes: { exclude: ["password"] } },
       {
